@@ -322,7 +322,7 @@ const displayElapsedTime = () => {
 const updateWishText = () => {
   const wishTextElement = document.getElementById('wishText');
   let currentNumber = -460;
-  const maxNumber = 300; // Change this to the maximum number you want to display
+  const maxNumber = 3000; // Change this to the maximum number you want to display
 
   setInterval(() => {
     wishTextElement.innerText = `Thank you for being here. I'm glad to have met you na. 
@@ -330,10 +330,26 @@ const updateWishText = () => {
 
     Stay with me for ${currentNumber} more valentine na kub!`;
     currentNumber = (currentNumber % maxNumber) + 1;
-  }, 100); // Change number every second
+  }, 100);
 };
 
-// Run fetch, animation, image loop, and wish text update in sequence
+// ...existing code...
+
+// Function to play background music
+const playBackgroundMusic = () => {
+  const backgroundMusic = document.getElementById('backgroundMusic');
+  backgroundMusic.play().catch(() => {
+    // Show the play button if autoplay is blocked
+    const playMusicButton = document.getElementById('startButton');
+    playMusicButton.style.display = 'block';
+    playMusicButton.addEventListener('click', () => {
+      backgroundMusic.play();
+      playMusicButton.style.display = 'none';
+    });
+  });
+};
+
+// Run fetch and play background music in sequence
 const resolveFetch = () => {
   return new Promise((resolve, reject) => {
     fetchData();
@@ -342,6 +358,7 @@ const resolveFetch = () => {
 };
 
 resolveFetch().then(() => {
+  playBackgroundMusic();
   animationTimeline();
   displayElapsedTime();
   updateWishText();
