@@ -293,8 +293,47 @@ const fetchData = () => {
       });
     });
 };
+// ...existing code...
 
-// Run fetch and animation in sequence
+// Function to calculate and display elapsed time
+const displayElapsedTime = () => {
+  const startDate = new Date('2025-01-20T00:00:00');
+  const elapsedTimeElement = document.getElementById('elapsedTime');
+
+  const updateElapsedTime = () => {
+    const now = new Date();
+    const elapsed = now - startDate;
+
+    const days = Math.floor(elapsed / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((elapsed % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((elapsed % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((elapsed % (1000 * 60)) / 1000);
+
+    elapsedTimeElement.innerText = `Time passed since January 20, 2025 \n \n  ${days}d ${hours}h ${minutes}m ${seconds}s \n - ♡ - \n`;
+  };
+
+  setInterval(updateElapsedTime, 1000);
+};
+
+// Run fetch, animation, and elapsed time display in sequence
+// ...existing code...
+
+// Function to dynamically change numbers in wishText
+const updateWishText = () => {
+  const wishTextElement = document.getElementById('wishText');
+  let currentNumber = -460;
+  const maxNumber = 300; // Change this to the maximum number you want to display
+
+  setInterval(() => {
+    wishTextElement.innerText = `Thank you for being here. I'm glad to have met you na. 
+    You’re not just my girlfriend—you’re my best friend, my comedian, and my biggest inspiration.
+
+    Stay with me for ${currentNumber} more valentine na kub!`;
+    currentNumber = (currentNumber % maxNumber) + 1;
+  }, 100); // Change number every second
+};
+
+// Run fetch, animation, image loop, and wish text update in sequence
 const resolveFetch = () => {
   return new Promise((resolve, reject) => {
     fetchData();
@@ -302,4 +341,8 @@ const resolveFetch = () => {
   });
 };
 
-resolveFetch().then(animationTimeline());
+resolveFetch().then(() => {
+  animationTimeline();
+  displayElapsedTime();
+  updateWishText();
+});
