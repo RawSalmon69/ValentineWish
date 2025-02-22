@@ -1,6 +1,4 @@
-// Animation Timeline
 const animationTimeline = () => {
-  // Spit chars that needs to be animated individually
   const textBoxChars = document.getElementsByClassName("hbd-chatbox")[0];
   const hbd = document.getElementsByClassName("wish-hbd")[0];
 
@@ -60,7 +58,6 @@ const animationTimeline = () => {
     .from(".three", 0.7, {
       opacity: 0,
       y: 10,
-      // scale: 0.7
     })
     .to(
       ".three",
@@ -108,7 +105,7 @@ const animationTimeline = () => {
     .to(".idea-3 strong", 0.5, {
       scale: 1.2,
       x: 10,
-      backgroundColor: "rgb(21, 161, 237)",
+      backgroundColor: "rgb(255, 33, 144)",
       color: "#fff",
     })
     .to(".idea-3", 0.7, ideaTextTransLeave, "+=1.5")
@@ -205,7 +202,6 @@ const animationTimeline = () => {
       {
         opacity: 0,
         y: -50,
-        // scale: 0.3,
         rotation: 150,
         skewX: "30deg",
         ease: Elastic.easeOut.config(1, 0.5),
@@ -229,7 +225,7 @@ const animationTimeline = () => {
       "party"
     )
     .from(
-      ".wish h5",
+      ".wish h7",
       0.5,
       {
         opacity: 0,
@@ -263,19 +259,18 @@ const animationTimeline = () => {
         rotation: 90,
       },
       "+=1"
-    );
-
-  // tl.seek("currentStep");
-  // tl.timeScale(2);
-
-  // Restart Animation on click
+    )
+    .add(() => {
+      const footer = document.getElementById("footer");
+      footer.style.visibility = "visible";
+      footer.style.opacity = "1";
+    });
   const replyBtn = document.getElementById("replay");
   replyBtn.addEventListener("click", () => {
     tl.restart();
   });
 };
 
-// Import the data to customize and insert them into page
 const fetchData = () => {
   fetch("customize.json")
     .then((data) => data.json())
@@ -293,9 +288,7 @@ const fetchData = () => {
       });
     });
 };
-// ...existing code...
 
-// Function to calculate and display elapsed time
 const displayElapsedTime = () => {
   const startDate = new Date('2025-01-20T00:00:00');
   const elapsedTimeElement = document.getElementById('elapsedTime');
@@ -315,31 +308,24 @@ const displayElapsedTime = () => {
   setInterval(updateElapsedTime, 1000);
 };
 
-// Run fetch, animation, and elapsed time display in sequence
-// ...existing code...
-
-// Function to dynamically change numbers in wishText
 const updateWishText = () => {
   const wishTextElement = document.getElementById('wishText');
   let currentNumber = -460;
-  const maxNumber = 3000; // Change this to the maximum number you want to display
+  const maxNumber = 3000;
 
   setInterval(() => {
-    wishTextElement.innerText = `Thank you for being here. I'm glad to have met you na. 
-    You’re not just my girlfriend—you’re my best friend, my comedian, and my biggest inspiration.
+    wishTextElement.innerText = `\nThank you for being here.\nI'm glad to have met you.
+    \nYou’re not just my girlfriend.\nYou’re my best friend, my comedian, and my biggest inspiration.
+    \nYou make my everyday brighter. Love you more than the sky na kub.
 
-    Stay with me for ${currentNumber} more valentine na kub!`;
+    Stay with me for ${currentNumber} more valentine loey!`;
     currentNumber = (currentNumber % maxNumber) + 1;
   }, 100);
 };
 
-// ...existing code...
-
-// Function to play background music
 const playBackgroundMusic = () => {
   const backgroundMusic = document.getElementById('backgroundMusic');
   backgroundMusic.play().catch(() => {
-    // Show the play button if autoplay is blocked
     const playMusicButton = document.getElementById('startButton');
     playMusicButton.style.display = 'block';
     playMusicButton.addEventListener('click', () => {
@@ -349,7 +335,6 @@ const playBackgroundMusic = () => {
   });
 };
 
-// Run fetch and play background music in sequence
 const resolveFetch = () => {
   return new Promise((resolve, reject) => {
     fetchData();

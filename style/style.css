@@ -2,6 +2,16 @@ html {
   box-sizing: border-box;
 }
 
+.copyright {
+  text-align: center;
+  padding-bottom: 0px;
+  padding-right: 15px;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  right:0;
+}
+
 body {
   margin: 0;
   font-family: "Work Sans", sans-serif;
@@ -10,6 +20,19 @@ body {
   height: 100vh;
   margin: 0px;
   overflow: hidden;
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
 }
 
 .click {
@@ -123,7 +146,7 @@ body {
 }
 
 .idea-6 span {
-  font-size: 15rem;
+  font-size: 12rem;
 }
 
 .six {
@@ -231,10 +254,10 @@ body {
   /* text-transform: uppercase; */
 }
 
-.wish h5 {
+.wish h7 {
   font-weight: lighter;
-  font-size: 2rem;
-  margin: 10px 0 0;
+  font-size: 1.4rem;
+  margin: 40px 0 0;
 }
 
 .nine p {
@@ -303,8 +326,9 @@ body {
     font-size: 2.3em;
   }
 
-  .wish h5 {
+  .wish h7 {
     font-size: 1.4rem;
+    margin: 40px 0 0;
   }
 
   .nine p {
